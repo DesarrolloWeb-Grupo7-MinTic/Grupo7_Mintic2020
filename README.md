@@ -1,0 +1,1 @@
+# Grupo7_Mintic2020
