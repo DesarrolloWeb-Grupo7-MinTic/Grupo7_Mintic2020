@@ -1,14 +1,15 @@
-const variables = require("./variables.jsx");
 const express = require("express");
 const mongoose = require("mongoose");
 const UserSchema = require("./user.js");
+require('dotenv').config();
 
 const app = express();
 const router = express.Router();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 mongoose.connect(
-  `mongodb+srv://${variables.username}:${variables.password}@cluster0.7nxtf.mongodb.net/MinTic2020?retryWrites=true&w=majority`,
+  `mongodb+srv://${process.env.DBUSERNAME}:${process.env.DBPASSWORD}@cluster0.7nxtf.mongodb.net/MinTic2020?retryWrites=true&w=majority`,
   { useNewUrlParser: true, useUnifiedTopology: true }
 );
 
