@@ -10,7 +10,6 @@ let UserSchema = new mongoose.Schema({
   phone: String,
   cellphone: String,
   link: String,
-  link: String,
   profileDescription: String,
 });
 

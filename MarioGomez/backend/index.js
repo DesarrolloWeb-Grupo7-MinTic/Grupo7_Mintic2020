@@ -47,7 +47,7 @@ router.post("/createuser", function (req, res) {
   });
   newUser.save((err, datos) => {
     err && console.log(err);
-    res.send("Usuario Guardo correctamente");
+    res.send("Usuario registrado correctamente");
   });
 });
 
@@ -63,15 +63,12 @@ router.put("/edituser", function (req, res) {
   });
 });
 
-router.delete("/deleteuser", function (req, res) {
-  const myQuery = { documentNumber: req.body.documentNumber };
-  UserSchema.find(myQuery, function (err, docs) {
-    docs.length >= 1
-      ? UserSchema.deleteOne(myQuery, (err) => {
-          err ? console.log(err) : res.send("Se Elimino el usuario con exito");
-        })
-      : res.send("Hubo un error inesperado");
-  });
+router.delete('/deleteuser', (req, res) => {
+  let documentNumber = req.body.documentNumber;
+  UserSchema.findOneAndDelete({ documentNumber: documentNumber }, function(err) {
+      if (err) console.error(err);
+      res.send("Se elimino el usuario con exito");
+    });
 });
 
 app.use(router);
